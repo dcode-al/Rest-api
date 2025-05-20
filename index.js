@@ -2376,22 +2376,6 @@ console.error(error);
 res.status(500).send("Internal Server Error");
 }
 });
-app.get('/api/drive', async (req, res) => {
-  try {
-    const message = req.query.url;
-    if (!message) {
-      return res.status(400).json({ error: 'Parameter "url" tidak ditemukan' });
-    }
-    let down = await gdrive(message) 
-    res.status(200).json({
-      status: 200,
-      creator: "Raiden Store",
-      result: down
-    });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
 app.get('/api/twitterdl', async (req, res) => {
   try {
     const message = req.query.url;
@@ -2418,12 +2402,28 @@ app.get('/api/tiktok', async (req, res) => {
     }
     tiktok2(message)
     .then((result) => {
-    res.status(200).result({
+    res.status(200).json({
       status: 200,
       creator: "Raiden Store",
       result: result 
     });
     })
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+app.get('/api/drive', async (req, res) => {
+  try {
+    const message = req.query.url;
+    if (!message) {
+      return res.status(400).json({ error: 'Parameter "url" tidak ditemukan' });
+    }
+    let down = await gdrive(message) 
+    res.status(200).json({
+      status: 200,
+      creator: "Raiden Store",
+      result: down
+    });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
