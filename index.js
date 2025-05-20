@@ -124,7 +124,7 @@ async function gdrive(url) {
 
 
 // tt slide.
-async function tiktok2(query) {
+async function tiktok(query) {
   return new Promise(async (resolve, reject) => {
     try {
     const encodedParams = new URLSearchParams();
