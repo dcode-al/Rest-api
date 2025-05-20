@@ -231,40 +231,6 @@ function tiktok(url) {
   }
   })
 	  }
-
-async function tiktok2(query) {
-  return new Promise(async (resolve, reject) => {
-    try {
-    const encodedParams = new URLSearchParams();
-encodedParams.set('url', query);
-encodedParams.set('hd', '1');
-
-      const response = await axios({
-        method: 'POST',
-        url: 'https://tikwm.com/api/',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-          'Cookie': 'current_language=en',
-          'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36'
-        },
-        data: encodedParams
-      });
-      const videos = response.data.data;
-        const result = {
-          title: videos.title,
-          cover: videos.cover,
-          origin_cover: videos.origin_cover,
-          no_watermark: videos.play,
-          watermark: videos.wmplay,
-          music: videos.music
-        };
-        resolve(result);
-    } catch (e) {
-    console.log(e)
-    }
-  });
-}
-
 async function shortlink(url) {
   const isUrl = /https?:\/\//.test(url);
   return isUrl
@@ -2376,6 +2342,22 @@ console.error(error);
 res.status(500).send("Internal Server Error");
 }
 });
+app.get('/api/drive', async (req, res) => {
+  try {
+    const message = req.query.url;
+    if (!message) {
+      return res.status(400).json({ error: 'Parameter "url" tidak ditemukan' });
+    }
+    let down = await gdrive(message) 
+    res.status(200).json({
+      status: 200,
+      creator: "Raiden Store",
+      result: down
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 app.get('/api/twitterdl', async (req, res) => {
   try {
     const message = req.query.url;
@@ -2400,30 +2382,14 @@ app.get('/api/tiktok', async (req, res) => {
     if (!message) {
       return res.status(400).json({ error: 'Parameter "url" tidak ditemukan' });
     }
-    tiktok2(message)
-    .then((result) => {
+    tiktok(message)
+    .then((json) => {
     res.status(200).json({
       status: 200,
       creator: "Raiden Store",
-      result: result 
+      result: json 
     });
     })
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-app.get('/api/drive', async (req, res) => {
-  try {
-    const message = req.query.url;
-    if (!message) {
-      return res.status(400).json({ error: 'Parameter "url" tidak ditemukan' });
-    }
-    let down = await gdrive(message) 
-    res.status(200).json({
-      status: 200,
-      creator: "Raiden Store",
-      result: down
-    });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -3587,7 +3553,7 @@ var transporter = nodemailer.createTransport({
 
       let mailOptions = {
         from: 'Vreden Putra Ltc.',
-        to: "vredenofficiall@gmail.com",
+        to: "raidenstore99@gmail.com",
         subject: '[ Qioo ] Terhubung!',
         html: html,
       };
@@ -3644,20 +3610,22 @@ app.get('/api/neko', async (req, res) => {
 });
 });
 app.get('/api/ass', async (req, res) => {
-  var response = await fetch(`https://raw.githubusercontent.com/dcode-al/database/refs/heads/main/Nsfw/ass.json`);
-    var data = await response.json();
-    var { url: result } = data;
-    var requestSettings = {
-        url: result,
+
+  let response = await fetch('https://raw.githubusercontent.com/dcode-al/database/refs/heads/main/Nsfw/ass.json');
+        var data = await response.json();
+        var randomIndex = Math.floor(Math.random() * data.results.length);
+        var randomResult = data.results[randomIndex];
+        var downloadLink = randomResult.url;
+	var requestSettings = {
+        url: downloadLink,
         method: 'GET',
         encoding: null
     };
     request(requestSettings, function (error, response, body) {
         res.set('Content-Type', 'image/png');
         res.send(body);
+    });    
 });
-});
-
 app.get('/api/ssweb', async (req, res) => {
   const message = req.query.url;
   const type = req.query.type;
@@ -4065,6 +4033,7 @@ var requestSettings = {
     });    
 });
 app.get('/api/bocil', async (req, res) => {
+
   let response = await fetch('https://raw.githubusercontent.com/Rianofc/apis/master/function/bocil.json');
         var data = await response.json();
         var randomIndex = Math.floor(Math.random() * data.results.length);
