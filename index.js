@@ -3610,10 +3610,6 @@ app.get('/api/neko', async (req, res) => {
 });
 });
 app.get('/api/ass', async (req, res) => {
-const lagu = req.query.lagu;
-    if (!lagu) {
-      return res.status(400).json({ error: 'Parameter "lagu" tidak ditemukan' });
-    }
     const response = await fetch(`https://raw.githubusercontent.com/dcode-al/database/refs/heads/main/Nsfw/ass.json`)
     const data = await response.json()
     res.status(200).json({
