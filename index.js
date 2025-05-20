@@ -3610,22 +3610,17 @@ app.get('/api/neko', async (req, res) => {
 });
 });
 app.get('/api/ass', async (req, res) => {
-
-  let response = await fetch('https://raw.githubusercontent.com/dcode-al/database/refs/heads/main/Nsfw/ass.json');
-        var data = await response.json();
-        var randomIndex = Math.floor(Math.random() * data.results.length);
-        var randomResult = data.results[randomIndex];
-        var downloadLink = randomResult.url;
-	var requestSettings = {
-        url: downloadLink,
-        method: 'GET',
-        encoding: null
-    };
-    request(requestSettings, function (error, response, body) {
-        res.set('Content-Type', 'image/png');
-        res.send(body);
-    });    
-});
+const lagu = req.query.lagu;
+    if (!lagu) {
+      return res.status(400).json({ error: 'Parameter "lagu" tidak ditemukan' });
+    }
+    const response = await fetch(`https://raw.githubusercontent.com/dcode-al/database/refs/heads/main/Nsfw/ass.json`)
+    const data = await response.json()
+    res.status(200).json({
+      creator: "Raiden Store",
+      result: data
+    });
+})
 app.get('/api/ssweb', async (req, res) => {
   const message = req.query.url;
   const type = req.query.type;
