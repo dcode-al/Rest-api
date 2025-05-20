@@ -3620,10 +3620,10 @@ app.get('/api/coba', async (req, res) => {
   let response = await fetch('https://raw.githubusercontent.com/dcode-al/database/refs/heads/main/Tiktok/notnot.json');
         var data = await response.json();
         var randomIndex = Math.floor(Math.random() * data.results.length);
-        var randomResult = data[randomIndex];
+        var randomResult = data.results[randomIndex];
         var downloadLink = randomResult.url;
 	var requestSettings = {
-        url: randomResult,
+        url: downloadLink,
         method: 'GET',
         encoding: null
     };
@@ -3632,6 +3632,7 @@ app.get('/api/coba', async (req, res) => {
         res.send(body);
     });    
 });
+
 app.get('/api/ssweb', async (req, res) => {
   const message = req.query.url;
   const type = req.query.type;
