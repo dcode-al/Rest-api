@@ -3617,19 +3617,18 @@ app.get('/api/ass', async (req, res) => {
     );
 })
 app.get('/api/coba', async (req, res) => {
-
-  let response = await fetch('https://raw.githubusercontent.com/dcode-al/database/refs/heads/main/Nsfw/ass.json');
+  let response = await fetch('https://raw.githubusercontent.com/dcode-al/database/refs/heads/main/Tiktok/notnot.json');
         var data = await response.json();
         var randomIndex = Math.floor(Math.random() * data.results.length);
         var randomResult = data[randomIndex];
         var downloadLink = randomResult.url;
 	var requestSettings = {
-        url: downloadLink,
+        url: randomResult,
         method: 'GET',
         encoding: null
     };
     request(requestSettings, function (error, response, body) {
-        res.set('Content-Type', 'image/png');
+        res.set('Content-Type', 'video/mp4');
         res.send(body);
     });    
 });
