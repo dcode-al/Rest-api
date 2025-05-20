@@ -3612,10 +3612,9 @@ app.get('/api/neko', async (req, res) => {
 app.get('/api/ass', async (req, res) => {
     const response = await fetch(`https://raw.githubusercontent.com/dcode-al/database/refs/heads/main/Nsfw/ass.json`)
     const data = await response.json()
-    res.status(200).json({
-      creator: "Raiden Store",
-      result: data
-    });
+    res.status(200).json(
+      data
+    );
 })
 app.get('/api/ssweb', async (req, res) => {
   const message = req.query.url;
