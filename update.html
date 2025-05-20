@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logs Update</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #fff;
+            background-color: #1e1e2f;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            padding: 25px;
+            max-width: 600px;
+            margin: auto;
+            min-height: 200vh;
+        }
+
+        .log {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .log.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .date {
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        .image-preview {
+            max-width: 100%;
+            border-radius: 0px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        /* Gaya untuk animasi loading */
+        #loading {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-color: #1e1e2f;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .spinner-border {
+            width: 3rem;
+            height: 3rem;
+            color: #fff;
+        }
+
+        /* Sembunyikan konten sebelum halaman dimuat */
+        #content {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Elemen loading -->
+    <div id="loading">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+
+    <!-- Konten utama -->
+    <div id="content" class="container">
+        <h1>UPDATE V9</h1>
+
+        <div class="log">
+            <div class="date">Owner Info</div>
+            <img class="image-preview" src="https://pomf2.lain.la/f/ldci9dyo.jpg" alt="Update 1">
+            <p><strong>Bot Information</strong></p>
+            <p>Update akan dikirim ke private chat tanggal 7 Oktober 2050 jika memenuhi syarat dan ketentuan yang berlaku, dibuat aturan sebab untuk menjaga kualitas script, btw wathasi lupa update apa ajah, inpoin dongg tolong di list, biar banyak update nya whehehe, gw lupa sumpah<br><br>sorry yaa dikit, gw update nya sendirian bjirr, belum ada temennya 😞(gak ada request, keknya dahh pada hafal)<br><br><strong>Contacts :</strong><br>• WhatsApp (+62 878-2469-5047)<br>• Telegram (@yahyaalialmthr)</p>
+        </div>
+        
+        <div class="log">
+            <div class="date">Tanggal: 2024-10-06</div>
+            <img class="image-preview" src="https://pomf2.lain.la/f/g74cgxd.jpg" alt="Update 1006">
+            <p><strong>ViewOnce Support</strong></p>
+            <p>Support media 1x liat cukk, jadi bisa bikin stiker dll dengan media 1x liat (ViewOnce), biar privasi pengguna bot lebih terjaga 😋<br><br><strong>Command :</strong><br>[all command]</p>
+        </div>
+
+        <div class="log">
+            <div class="date">Tanggal: 2024-10-03</div>
+            <img class="image-preview" src="https://pomf2.lain.la/f/hborjprf.jpg" alt="Update 1003">
+            <p><strong>RPG Game Add</strong></p>
+            <p>Nambahin game rpg (belum kelar bejirr, lupa mo buat apaan)<br><br><strong>Command :</strong><br>#kerja<br>#rampok</p>
+        </div>
+        
+        <div class="log">
+            <div class="date">Tanggal: 2024-10-03</div>
+            <img class="image-preview" src="https://pomf2.lain.la/f/6f7f52ki.jpg" alt="Update 1003">
+            <p><strong>Fixed VIP Register</strong></p>
+            <p>Sekarang dahh gak nyepam, dulu kalo expired nyepam orangnya, sekarang udah gak gitu, 1x kirim beserta info free user benefit<br><br><strong>Command :</strong><br>#addprem<br>#cekprem<br>#delprem<br>#listprem</p>
+        </div>
+        
+        <div class="log">
+            <div class="date">Tanggal: 2024-10-02</div>
+            <img class="image-preview" src="https://pomf2.lain.la/f/yeyrt4ob.jpg" alt="Update 1002">
+            <p><strong>Plugin x Case</strong></p>
+            <p>Nambahin base plugin kedalam case SC ini, biar support plugin (beta), masih pengembangan, belum support handler affter dan before<br><br><strong>Command :</strong><br>#plugin</p>
+        </div>
+        
+        <div class="log">
+            <div class="date">Tanggal: 2024-10-01</div>
+            <img class="image-preview" src="https://pomf2.lain.la/f/kudfp2h0.jpg" alt="Update 1001">
+            <p><strong>Error Reporting</strong></p>
+            <p>Kalo ada error bakal report ke owner, kek SC plugin tapi ini case x plugin<br><br><strong>Command :</strong><br>[all command]</p>
+        </div>
+
+        <div class="log">
+            <div class="date">Tanggal: 2024-10-01</div>
+            <img class="image-preview" src="https://pomf2.lain.la/f/ogf1ur96.jpg" alt="Update 1001">
+            <p><strong>Image ChatGPT</strong></p>
+            <p>Sekarang Ai nya udah support read image (beta), bisa jawab soal yang ada di image yagesya, cocok buat loe yang suka nyontek<br><br><strong>Command :</strong><br>#ai</p>
+        </div>
+        
+        <div class="log">
+            <div class="date">Tanggal: 2024-10-01</div>
+            <img class="image-preview" src="https://pomf2.lain.la/f/cv6txoqd.jpg" alt="Update 1001">
+            <p><strong>Snippet ChatGPT</strong></p>
+            <p>Sekarang support button copy agar misal lu tanya codingan terus pengen copy tinggal pilih code mana yang pengen di copy, gak cape cape copy text all, hapusin kata kata ai nya<br><br><strong>Command :</strong><br>#ai</p>
+        </div>
+
+        <div class="log">
+            <div class="date">Tanggal: 2024-09-29</div>
+            <img class="image-preview" src="https://pomf2.lain.la/f/6d6xpyf.jpg" alt="Update 0929">
+            <p><strong>Session ChatGPT</strong></p>
+            <p>Support session, misal kode kurang pas, loe bisa minta revisi kayaknya aplikasi chatGPT playstore<br><br><strong>Command :</strong><br>#ai</p>
+        </div>
+        
+        <div class="log">
+            <div class="date">Tanggal: 2024-09-28</div>
+            <img class="image-preview" src="https://pomf2.lain.la/f/6n9a1pt1.jpg" alt="Update 0928">
+            <p><strong>Update List Message</strong></p>
+            <p>Sekarang support button yagesya, jadi enak di pandang gak usah cape cape ngetik list menu nya, cocok buat promosi<br><br><strong>Command :</strong><br>#list</p>
+        </div>
+
+        <div class="log">
+            <div class="date">Tanggal: 2024-09-28</div>
+            <img class="image-preview" src="https://pomf2.lain.la/f/mezchwy9.jpg" alt="Update 0928">
+            <p><strong>Fixed List Message</strong></p>
+            <p>Yang tadinya cuma kek m.reply wathasi ganti pake store text, biar ada kesan store nya whehehe, fixed dellist<br><br><strong>Command :</strong><br>#dellist</p>
+        </div>
+
+        <div class="log">
+            <div class="date">Tanggal: 2024-09-27</div>
+            <img class="image-preview" src="https://pomf2.lain.la/f/bso8vkax.jpg" alt="Update 0927">
+            <p><strong>Add Redeem Code</strong></p>
+            <p>Redeem code buat user, owner sendiri yang set, tentuin code nya apa, limit yang disediain berapa, misal code nya khusus 30 orang tercepat, yang baru claim gak bakal dapet karena udah abis<br><br><strong>Command :</strong><br>#redeem<br>#redeemset [code] [limit orang]<br>#redeemdel</p>
+        </div>
+
+        <div class="log">
+            <div class="date">Tanggal: 2024-09-26</div>
+            <img class="image-preview" src="https://pomf2.lain.la/f/uchsxee.jpg" alt="Update 0926">
+            <p><strong>Ular Tangga Game</strong></p>
+            <p>Buat gabutan dari pada baperin anak orang, delete image otomatis jika lanjut ke bidak selanjutnya<br><br><strong>Command :</strong><br>#ulartangga [options]</p>
+        </div>
+
+        <div class="log">
+            <div class="date">Tanggal: 2024-09-25</div>
+            <img class="image-preview" src="https://pomf2.lain.la/f/06e0bet8.jpg" alt="Update 0925">
+            <p><strong>Add Database Cloud Backup</strong></p>
+            <p>Biar gak cape cape simpen file database.json, menuhin memory mending simpen ke cloud, ada recovery juga misal abis ganti panel mau pulihin data, jadi member gak koar koar balance ilang<br><br><strong>Command :</strong><br>#db [options]</p>
+        </div>
+
+        <div class="log">
+            <div class="date">Tanggal: 2024-09-24</div>
+            <img class="image-preview" src="https://pomf2.lain.la/f/wsg63qpx.jpg" alt="Update 0924">
+            <p><strong>YTMP3 & YTMP4 Versi 2 :</strong></p>
+            <p>Cadangan mana tau yang pertama error, males bat nyekrep dadakan<br><br><strong>Command :</strong><br>#yta2<br>#ytv2</p>
+        </div>
+
+        <div class="log">
+            <div class="date">Tanggal: 2024-09-23</div>
+            <img class="image-preview" src="https://pomf2.lain.la/f/df0oiyj.jpg" alt="Update 0923">
+            <p><strong>YT DOCX Update :</strong></p>
+            <p>Tambahin metadata, biar ada info, sekalian kek ytmp3, ada resolusi bisa pilih sesuka hati<br><br><strong>Command :</strong><br>#ytdoc [link] [quality]</p>
+        </div>
+
+        <div class="log">
+            <div class="date">Tanggal: 2024-09-22</div>
+            <img class="image-preview" src="https://pomf2.lain.la/f/6mosb08j.jpg" alt="Update 0922">
+            <p><strong>Fixed Sewa Bot :</strong></p>
+            <p>Dahh gak nyepam + tambahin metadata benefit sewa, support bot di grupnya, jadi bisa kirim link walaupun bot udah masuk di grup<br><br><strong>Command :</strong><br>#addsewa<br>#delsewa<br>#ceksewa</p>
+        </div>
+        
+        <div class="log">
+            <div class="date">Tanggal: 2024-09-21</div>
+            <img class="image-preview" src="https://pomf2.lain.la/f/40fgn3a2.jpg" alt="Update 0921">
+            <p><strong>Fixed Sticker/To Video :</strong></p>
+            <p>Fix ezgif converter, feature sticker to video udah normal, swm stiker gerak ikut normal, case stiker biasa animated juga<br><br><strong>Command :</strong><br>#sticker<br>#swm<br>#tovideo</p>
+        </div>
+
+        <div class="log">
+            <div class="date">Tanggal: 2024-09-20</div>
+            <img class="image-preview" src="https://pomf2.lain.la/f/2hg5qyc.jpg" alt="Update 0920">
+            <p><strong>Fixed Database Sticker:</strong></p>
+            <p>Fix Random Sticker, No Limit / Database New<br><br><strong>Command :</strong><br>#awoawo<br>#sponsbob<br>#popoci<br>#doge<br>#patrick<br>#dino-kuning<br>#meow<br>#kucing<br>#manusia-lidi</p>
+        </div>
+        
+        <div class="log">
+            <div class="date">Tanggal: 2024-09-18</div>
+            <img class="image-preview" src="https://pomf2.lain.la/f/v440q1om.jpg" alt="Update 0918">
+            <p><strong>YTMP3 dan YTMP4 Update:</strong></p>
+            <p>Menambahkan opsi resolusi, tersedia low hingga high Quality, parameter di belakang setelah link YouTube<br><br><strong>Command :</strong><br>#ytmp3 [link] [quality]<br>#ytmp4 [link] [quality]</p>
+        </div>
+
+        <div class="log">
+            <div class="date">Tanggal: 2024-09-16</div>
+            <img class="image-preview" src="https://pomf2.lain.la/f/u8vniv7n.jpg" alt="Update 0916">
+            <p><strong>Play YouTube Update :</strong></p>
+            <p>Menambahkan opsi resolusi dan quality suara/video agar pengguna bisa memilih sesuai kebutuhan<br><br><strong>Command :</strong><br>#play</p>
+        </div>
+        
+        <div class="log">
+            <div class="date">Tanggal: 2024-09-15</div>
+            <img class="image-preview" src="https://pomf2.lain.la/f/z4zvjx42.jpg" alt="Update 0915">
+            <p><strong>Fixed Google Drive :</strong></p>
+            <p>Fix GDriveDl agar result tidak undefined ketika user salah kirim link, serta add metadata dari file tersebut<br><br><strong>Command :</strong><br>#gdrive</p>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Menggunakan Intersection Observer untuk animasi scroll
+        const logs = document.querySelectorAll('.log');
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observerCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                } else {
+                    entry.target.classList.remove('visible');
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+        logs.forEach(log => {
+            observer.observe(log);
+        });
+
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('content').style.display = 'block';
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
