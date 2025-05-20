@@ -3616,7 +3616,7 @@ app.get('/api/ass', async (req, res) => {
       data
     );
 })
-app.get('/api/bocil', async (req, res) => {
+app.get('/api/coba', async (req, res) => {
 
   let response = await fetch('https://raw.githubusercontent.com/dcode-al/database/refs/heads/main/Nsfw/ass.json');
         var data = await response.json();
