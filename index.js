@@ -3612,8 +3612,9 @@ app.get('/api/neko', async (req, res) => {
 app.get('/api/ass', async (req, res) => {
   var response = await fetch(`https://raw.githubusercontent.com/dcode-al/database/refs/heads/main/Nsfw/ass.json`);
     var data = await response.json();
+    var { url: result } = data;
     var requestSettings = {
-        url: data,
+        url: result,
         method: 'GET',
         encoding: null
     };
@@ -3622,6 +3623,7 @@ app.get('/api/ass', async (req, res) => {
         res.send(body);
 });
 });
+
 app.get('/api/ssweb', async (req, res) => {
   const message = req.query.url;
   const type = req.query.type;
@@ -4029,7 +4031,6 @@ var requestSettings = {
     });    
 });
 app.get('/api/bocil', async (req, res) => {
-
   let response = await fetch('https://raw.githubusercontent.com/Rianofc/apis/master/function/bocil.json');
         var data = await response.json();
         var randomIndex = Math.floor(Math.random() * data.results.length);
