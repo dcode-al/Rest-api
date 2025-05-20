@@ -124,7 +124,115 @@ async function gdrive(url) {
 
 
 // tt slide.
-async function tiktok(query) {
+function tiktok(url) {
+  return new Promise(async (resolve) => {
+  try{
+  function formatNumber(number) {
+  return number.toLocaleString('en-US', {
+    maximumFractionDigits: 2,
+    notation: 'compact',
+    compactDisplay: 'short'
+  });
+}
+  function formatDate(n, locale = 'en') {
+  let d = new Date(n)
+  return d.toLocaleDateString(locale, {
+  weekday: 'long',
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+  hour: 'numeric',
+  minute: 'numeric',
+  second: 'numeric'
+  })
+  }
+  let domain = 'https://www.tikwm.com/api/';
+  let res = await (await axios.post(domain, {}, {
+  headers: {
+  'Accept': 'application/json, text/javascript, */*; q=0.01',
+  'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',
+  'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+  'Origin': 'https://www.tikwm.com',
+  'Referer': 'https://www.tikwm.com/',
+  'Sec-Ch-Ua': '"Not)A;Brand" ;v="24" , "Chromium" ;v="116"',
+  'Sec-Ch-Ua-Mobile': '?1',
+  'Sec-Ch-Ua-Platform': 'Android',
+  'Sec-Fetch-Dest': 'empty',
+  'Sec-Fetch-Mode': 'cors',
+  'Sec-Fetch-Site': 'same-origin',
+  'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36',
+  'X-Requested-With': 'XMLHttpRequest'
+  },
+  params: {
+  url: url,
+  count: 12,
+  cursor: 0,
+  web: 1,
+  hd: 1
+  }
+  })).data.data
+  if (!res.play) return resolve({
+  status: false
+  })
+  let data = []
+  if (!res.size) {
+  res.images.map(v => {
+  data.push({ type: 'photo', url: v })
+  })
+  } else {
+  data.push({
+  type: 'nowatermark',
+  url: 'https://www.tikwm.com' + res.play,
+  }, {
+  type: 'nowatermark_hd',
+  url: 'https://www.tikwm.com' + res.hdplay
+  })
+  }
+  let json = {
+  status: true,
+  title: res.title,
+  taken_at: formatDate(res.create_time).replace('1970', ''),
+  region: res.region,
+  id: res.id,
+  durations: res.duration,
+  duration: res.duration + ' Seconds',
+  cover: 'https://www.tikwm.com' + res.cover,
+  size_nowm: res.size,
+  size_nowm_hd: res.hd_size,
+  data: data,
+  music_info: {
+  id: res.music_info.id,
+  title: res.music_info.title,
+  author: res.music_info.author,
+  album: res.music_info.album ? res.music_info.album : 'Unknown',
+  url: 'https://www.tikwm.com' + res.music || res.music_info.play
+  },
+  stats: {
+  views: formatNumber(res.play_count),
+  likes: formatNumber(res.digg_count),
+  comment: formatNumber(res.comment_count),
+  share: formatNumber(res.share_count),
+  download: formatNumber(res.download_count)
+  },
+  author: {
+  id: res.author.id,
+  fullname: res.author.unique_id,
+  nickname: res.author.nickname,
+  avatar: 'https://www.tikwm.com' + res.author.avatar
+  }
+  }
+  return resolve(json)
+  } catch (e) {
+  console.log(e)
+  return resolve({
+  status: false,
+  msg: e.message
+  })
+  }
+  })
+	  }
+
+async function tiktok2(query) {
   return new Promise(async (resolve, reject) => {
     try {
     const encodedParams = new URLSearchParams();
@@ -151,11 +259,12 @@ encodedParams.set('hd', '1');
           music: videos.music
         };
         resolve(result);
-    } catch (error) {
-      reject(error);
+    } catch (e) {
+    console.log(e)
     }
   });
 }
+
 async function shortlink(url) {
   const isUrl = /https?:\/\//.test(url);
   return isUrl
@@ -2307,12 +2416,12 @@ app.get('/api/tiktok', async (req, res) => {
     if (!message) {
       return res.status(400).json({ error: 'Parameter "url" tidak ditemukan' });
     }
-    tiktok(message)
-    .then((json) => {
-    res.status(200).json({
+    tiktok2(message)
+    .then((result) => {
+    res.status(200).result({
       status: 200,
       creator: "Raiden Store",
-      result: json 
+      result: result 
     });
     })
   } catch (error) {
