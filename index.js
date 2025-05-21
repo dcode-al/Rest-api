@@ -1008,69 +1008,32 @@ async function morav2(prompt, username) {
 
   return response.data
 }
-async function ffstalk(id) {
-try {
-const response = await fetch(`https://www.public.freefireinfo.site/api/info/sg/${id}?key=deannolimit`)
-const ff = await response.json()
-const pet = ff["Equipped Pet Information"]
-const gul = ff["Guild Information"]
-const gulder = ff["Guild Leader Information"]
-let akun = {
-id: ff["Account UID"],
-name: ff["Account Name"],
-level: ff["Account Level"],
-xp: ff["Account XP"],
-region: ff["Account Region"],
-like: ff["Account Likes"],
-bio: ff["Account Signature"],
-create_time: ff["Account Create Time (GMT 0530)"],
-last_login: ff["Account Last Login (GMT 0530)"],
-honor_score: ff["Account Honor Score"],
-booyah_pass: ff["Account Booyah Pass"],
-booyah_pass_badge: ff["Account Booyah Pass Badges"],
-evo_access_badge: ff["Account Evo Access Badge"],
-equipped_title: ff["Equipped Title"],
-BR_points: ff["BR Rank Points"],
-CS_points: ff["CS Rank Points"]
-}
-let petff = {
-name: pet["Pet Name"],
-level: pet["Pet Level"],
-type: pet["Pet Type"],
-xp: pet["Pet XP"]
-}
-let guild = {
-name: gul["Guild Name"],
-id: gul["Guild ID"],
-level: gul["Guild Level"],
-member: gul["Guild Current Members"],
-capacity: gul["Guild Capacity"]
-}
-let guilder = {
-create_time: gulder["Leader Ac Created Time (GMT 0530)"],
-last_login: gulder["Leader Last Login Time (GMT 0530)"],
-BP_bagdes: gulder["Leader BP Badges"],
-BR_points: gulder["Leader BR Points"],
-CS_points: gulder["Leader CS Points"],
-level: gulder["Leader Level"],
-like: gulder["Leader Likes"],
-name: gulder["Leader Name"],
-eqiupped_title: gulder["Leader Title"],
-id: gulder["Leader UID"],
-xp: gulder["Leader XP"]
-}
-return {
-account: akun,
-pet_info: petff,
-guild: guild,
-ketua_guild: guilder
-}
-} catch (error) {
-return {
-status: "terjadi kesalahan atau uid tidak valid"
-}
-}
-}
+async function ffstalk(gameId) {
+    try {
+      const response = await axios.post('https://api.duniagames.co.id/api/transaction/v1/top-up/inquiry/store', {
+        productId: 3,
+        itemId: 353,
+        product_ref: "REG",
+        product_ref_denom: "REG",
+        catalogId: 376,
+        paymentId: 1252,
+        gameId: gameId
+      }, {
+        headers: {
+          'Accept-Language': 'id',
+          'x-device': '27004487-d5fb-4206-8c50-cdeac00ef6ed',
+          'Ciam-Type': 'FR',
+          'Accept': 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'
+        }
+      });
+  
+      return response.data.data.gameDetail.userName;
+    } catch (error) {
+      console.error('Error:', error);
+      return null;
+    }
+  }
 // ml stalk
 async function mlstalk(id, zoneId) {
     return new Promise(async (resolve, reject) => {
@@ -3581,6 +3544,14 @@ const lagu = req.query.lagu;
       result: data
     });
 })
+app.get('/api/qbucin', async (req, res) => {
+    const response = await fetch(`https://raw.githubusercontent.com/dcode-al/database/refs/heads/main/Qoutes/bucin.json`)
+    const data = await response.json()
+    res.status(200).json({
+      creator: "Raiden Store",
+      result: data
+    });
+})
 app.get('/api/waifu', async (req, res) => {
   var response = await fetch(`https://api.waifu.pics/sfw/waifu`);
     var data = await response.json();
@@ -3609,14 +3580,8 @@ app.get('/api/neko', async (req, res) => {
         res.send(body);
 });
 });
-app.get('/api/ass', async (req, res) => {
-    const response = await fetch(`https://raw.githubusercontent.com/dcode-al/database/refs/heads/main/Nsfw/ass.json`)
-    const data = await response.json()
-    res.status(200).json(
-      data
-    );
-})
-app.get('/api/coba', async (req, res) => {
+
+app.get('/api/ttnotnot', async (req, res) => {
   let response = await fetch('https://raw.githubusercontent.com/dcode-al/database/refs/heads/main/Tiktok/notnot.json');
         var data = await response.json();
         var randomIndex = Math.floor(Math.random() * data.results.length);
@@ -4039,8 +4004,23 @@ var requestSettings = {
         res.send(body);
     });    
 });
+app.get('/api/ttnotnot', async (req, res) => {
+  let response = await fetch('https://raw.githubusercontent.com/dcode-al/database/refs/heads/main/Tiktok/notnot.json');
+        var data = await response.json();
+        var randomIndex = Math.floor(Math.random() * data.results.length);
+        var randomResult = data.results[randomIndex];
+        var downloadLink = randomResult.url;
+	var requestSettings = {
+        url: downloadLink,
+        method: 'GET',
+        encoding: null
+    };
+    request(requestSettings, function (error, response, body) {
+        res.set('Content-Type', 'video/mp4');
+        res.send(body);
+    });    
+});
 app.get('/api/bocil', async (req, res) => {
-
   let response = await fetch('https://raw.githubusercontent.com/Rianofc/apis/master/function/bocil.json');
         var data = await response.json();
         var randomIndex = Math.floor(Math.random() * data.results.length);
