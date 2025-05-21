@@ -3544,17 +3544,8 @@ const lagu = req.query.lagu;
       result: data
     });
 })
-app.get('/api/qbucin', async (req, res) => {
-    const response = await fetch(`https://raw.githubusercontent.com/dcode-al/database/refs/heads/main/Qoutes/bucin.json`)
-    var data = await response.json();
-    var randomIndex = Math.floor(Math.random() * data.length);
-    var randomResult = data[randomIndex];
-    res.status(200).json({
-      creator: "Raiden Store",
-      result: randomResult
-    });
-})
-app.get('/api/waifu', async (req, res) => {
+
+app.get('/api/anime_waifu', async (req, res) => {
   var response = await fetch(`https://api.waifu.pics/sfw/waifu`);
     var data = await response.json();
     var { url: result } = data;
@@ -3568,7 +3559,63 @@ app.get('/api/waifu', async (req, res) => {
         res.send(body);
 });
 });
-app.get('/api/neko', async (req, res) => {
+app.get('/api/anime_neko', async (req, res) => {
+  var response = await fetch(`https://api.waifu.pics/sfw/neko`);
+    var data = await response.json();
+    var { url: result } = data;
+    var requestSettings = {
+        url: result,
+        method: 'GET',
+        encoding: null
+    };
+    request(requestSettings, function (error, response, body) {
+        res.set('Content-Type', 'image/png');
+        res.send(body);
+});
+});
+app.get('/api/hblowjob', async (req, res) => {
+  var response = await fetch(`https://api.waifu.pics/nsfw/blowjob`);
+    var data = await response.json();
+    var { url: result } = data;
+    var requestSettings = {
+        url: result,
+        method: 'GET',
+        encoding: null
+    };
+    request(requestSettings, function (error, response, body) {
+        res.set('Content-Type', 'image/png');
+        res.send(body);
+});
+});
+app.get('/api/htrap', async (req, res) => {
+  var response = await fetch(`https://api.waifu.pics/nsfw/trap`);
+    var data = await response.json();
+    var { url: result } = data;
+    var requestSettings = {
+        url: result,
+        method: 'GET',
+        encoding: null
+    };
+    request(requestSettings, function (error, response, body) {
+        res.set('Content-Type', 'image/png');
+        res.send(body);
+});
+});
+app.get('/api/hwaifu', async (req, res) => {
+  var response = await fetch(`https://api.waifu.pics/nsfw/waifu`);
+    var data = await response.json();
+    var { url: result } = data;
+    var requestSettings = {
+        url: result,
+        method: 'GET',
+        encoding: null
+    };
+    request(requestSettings, function (error, response, body) {
+        res.set('Content-Type', 'image/png');
+        res.send(body);
+});
+});
+app.get('/api/hneko', async (req, res) => {
   var response = await fetch(`https://api.waifu.pics/nsfw/neko`);
     var data = await response.json();
     var { url: result } = data;
@@ -4367,6 +4414,33 @@ app.get('/api/styleText', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+app.get('/api/quotesAnime', async (req, res) => {
+  try {
+    quotesAnime()
+    .then((hasil) => {
+    res.status(200).json({
+      status: 200,
+      creator: "Raiden Store",
+      hasil 
+    });
+    })
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+app.get('/api/quotesBucin', async (req, res) => {
+    const response = await fetch(`https://raw.githubusercontent.com/dcode-al/database/refs/heads/main/Qoutes/bucin.json`)
+    var data = await response.json();
+    var randomIndex = Math.floor(Math.random() * data.length);
+    var randomResult = data[randomIndex];
+    res.status(200).json({
+      creator: "Raiden Store",
+      result: randomResult
+    });
+})
+app.get('/game', async (req, res) => {
+   res.sendFile(path.join(__dirname,  'game.html'));
+})
 app.use((req, res, next) => {
   res.sendFile(path.join(__dirname,  '404.html'));
 });
