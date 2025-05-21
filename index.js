@@ -4053,38 +4053,6 @@ var requestSettings = {
         res.send(body);
     });    
 });
-app.get('/api/ttnotnot', async (req, res) => {
-  let response = await fetch('https://raw.githubusercontent.com/dcode-al/database/refs/heads/main/Tiktok/notnot.json');
-        var data = await response.json();
-        var randomIndex = Math.floor(Math.random() * data.results.length);
-        var randomResult = data.results[randomIndex];
-        var downloadLink = randomResult.url;
-	var requestSettings = {
-        url: downloadLink,
-        method: 'GET',
-        encoding: null
-    };
-    request(requestSettings, function (error, response, body) {
-        res.set('Content-Type', 'video/mp4');
-        res.send(body);
-    });    
-});
-app.get('/api/bocil', async (req, res) => {
-  let response = await fetch('https://raw.githubusercontent.com/Rianofc/apis/master/function/bocil.json');
-        var data = await response.json();
-        var randomIndex = Math.floor(Math.random() * data.results.length);
-        var randomResult = data.results[randomIndex];
-        var downloadLink = randomResult.url;
-	var requestSettings = {
-        url: downloadLink,
-        method: 'GET',
-        encoding: null
-    };
-    request(requestSettings, function (error, response, body) {
-        res.set('Content-Type', 'video/mp4');
-        res.send(body);
-    });    
-});
 
 app.get('/api/gimage', async (req, res) => {
 	const text = req.query.query;
@@ -4414,6 +4382,54 @@ app.get('/api/styleText', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+app.get('/api/TiktokNotnot', async (req, res) => {
+  let response = await fetch('https://raw.githubusercontent.com/dcode-al/database/refs/heads/main/Tiktok/notnot.json');
+        var data = await response.json();
+        var randomIndex = Math.floor(Math.random() * data.results.length);
+        var randomResult = data.results[randomIndex];
+        var downloadLink = randomResult.url;
+	var requestSettings = {
+        url: downloadLink,
+        method: 'GET',
+        encoding: null
+    };
+    request(requestSettings, function (error, response, body) {
+        res.set('Content-Type', 'video/mp4');
+        res.send(body);
+    });    
+});
+app.get('/api/TiktokBocil', async (req, res) => {
+  let response = await fetch('https://raw.githubusercontent.com/Rianofc/apis/master/function/bocil.json');
+        var data = await response.json();
+        var randomIndex = Math.floor(Math.random() * data.results.length);
+        var randomResult = data.results[randomIndex];
+        var downloadLink = randomResult.url;
+	var requestSettings = {
+        url: downloadLink,
+        method: 'GET',
+        encoding: null
+    };
+    request(requestSettings, function (error, response, body) {
+        res.set('Content-Type', 'video/mp4');
+        res.send(body);
+    });    
+});
+app.get('/api/TiktokGheayubi', async (req, res) => {
+  let response = await fetch('https://raw.githubusercontent.com/dcode-al/database/refs/heads/main/Tiktok/gheayubi.json');
+        var data = await response.json();
+        var randomIndex = Math.floor(Math.random() * data.length);
+        var randomResult = data[randomIndex];
+	var requestSettings = {
+        url: randomResult,
+        method: 'GET',
+        encoding: null
+    };
+    request(requestSettings, function (error, response, body) {
+        res.set('Content-Type', 'video/mp4');
+        res.send(body);
+    });    
+});
+
 app.get('/api/quotesAnime', async (req, res) => {
   try {
     quotesAnime()
@@ -4428,6 +4444,7 @@ app.get('/api/quotesAnime', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
 app.get('/api/quotesBucin', async (req, res) => {
     const response = await fetch(`https://raw.githubusercontent.com/dcode-al/database/refs/heads/main/Qoutes/bucin.json`)
     var data = await response.json();
