@@ -124,39 +124,6 @@ async function gdrive(url) {
 
 
 // tt slide.
-function tiktok2(query) {
-  return new Promise(async (resolve, reject) => {
-    try {
-    const encodedParams = new URLSearchParams();
-encodedParams.set('url', query);
-encodedParams.set('hd', '1');
-
-      const response = await axios({
-        method: 'POST',
-        url: 'https://tikwm.com/api/',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-          'Cookie': 'current_language=en',
-          'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36'
-        },
-        data: encodedParams
-      });
-      const videos = response.data.data;
-        const result = {
-          title: videos.title,
-          cover: videos.cover,
-          origin_cover: videos.origin_cover,
-          no_watermark: videos.play,
-          watermark: videos.wmplay,
-          music: videos.music
-        };
-        resolve(result);
-    } catch (error) {
-      throw error;
-    }
-  });
-}
-
 function tiktok(url) {
   return new Promise(async (resolve) => {
   try{
@@ -2378,12 +2345,12 @@ app.get('/api/tiktok', async (req, res) => {
     if (!message) {
       return res.status(400).json({ error: 'Parameter "url" tidak ditemukan' });
     }
-    tiktok2(message)
-    .then((result) => {
+    tiktok(message)
+    .then((json) => {
     res.status(200).json({
       status: 200,
       creator: "Raiden Store",
-      result: result 
+      result: json 
     });
     })
   } catch (error) {
@@ -3579,10 +3546,12 @@ const lagu = req.query.lagu;
 })
 app.get('/api/qbucin', async (req, res) => {
     const response = await fetch(`https://raw.githubusercontent.com/dcode-al/database/refs/heads/main/Qoutes/bucin.json`)
-    const data = await response.json()
+    var data = await response.json();
+    var randomIndex = Math.floor(Math.random() * data.length);
+    var randomResult = data[randomIndex];
     res.status(200).json({
       creator: "Raiden Store",
-      result: data
+      result: randomResult
     });
 })
 app.get('/api/waifu', async (req, res) => {
