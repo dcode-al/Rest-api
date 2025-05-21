@@ -1028,7 +1028,7 @@ async function ffstalk(gameId) {
         }
       });
   
-      return response.data.data.gameDetail.userName;
+      return response.data.data.gameDetail;
     } catch (error) {
       console.error('Error:', error);
       return null;
@@ -2873,8 +2873,7 @@ app.get('/api/remini', async (req, res) => {
 	const yourn = await bufferlah(img) 
 		danz.tools.remini(yourn).then(data => {	
      res.header('Content-Disposition', `attachment; filename="result-remini.jpg"`);
-       		 
-  res.set('Content-Type', 'image/jpg');
+     res.set('Content-Type', 'image/jpg');
         res.send(data);
 });			
 });
@@ -3018,7 +3017,7 @@ app.get('/api/meme', async (req, res) => {
     res.status(200).json({
       status: 200,
       creator: "Raiden Store",
-      result: "https://cache.lahelu.com/" + result.media
+      result: result.media
     });
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -3628,23 +3627,6 @@ app.get('/api/hneko', async (req, res) => {
         res.set('Content-Type', 'image/png');
         res.send(body);
 });
-});
-
-app.get('/api/ttnotnot', async (req, res) => {
-  let response = await fetch('https://raw.githubusercontent.com/dcode-al/database/refs/heads/main/Tiktok/notnot.json');
-        var data = await response.json();
-        var randomIndex = Math.floor(Math.random() * data.results.length);
-        var randomResult = data.results[randomIndex];
-        var downloadLink = randomResult.url;
-	var requestSettings = {
-        url: downloadLink,
-        method: 'GET',
-        encoding: null
-    };
-    request(requestSettings, function (error, response, body) {
-        res.set('Content-Type', 'video/mp4');
-        res.send(body);
-    });    
 });
 
 app.get('/api/ssweb', async (req, res) => {
