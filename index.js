@@ -152,7 +152,7 @@ encodedParams.set('hd', '1');
         };
         resolve(result);
     } catch (error) {
-      reject(error);
+      throw error;
     }
   });
 }
