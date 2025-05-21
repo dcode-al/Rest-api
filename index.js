@@ -124,6 +124,39 @@ async function gdrive(url) {
 
 
 // tt slide.
+function tiktok2(query) {
+  return new Promise(async (resolve, reject) => {
+    try {
+    const encodedParams = new URLSearchParams();
+encodedParams.set('url', query);
+encodedParams.set('hd', '1');
+
+      const response = await axios({
+        method: 'POST',
+        url: 'https://tikwm.com/api/',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+          'Cookie': 'current_language=en',
+          'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36'
+        },
+        data: encodedParams
+      });
+      const videos = response.data.data;
+        const result = {
+          title: videos.title,
+          cover: videos.cover,
+          origin_cover: videos.origin_cover,
+          no_watermark: videos.play,
+          watermark: videos.wmplay,
+          music: videos.music
+        };
+        resolve(result);
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
+
 function tiktok(url) {
   return new Promise(async (resolve) => {
   try{
@@ -2345,12 +2378,12 @@ app.get('/api/tiktok', async (req, res) => {
     if (!message) {
       return res.status(400).json({ error: 'Parameter "url" tidak ditemukan' });
     }
-    tiktok(message)
-    .then((json) => {
+    tiktok2(message)
+    .then((result) => {
     res.status(200).json({
       status: 200,
       creator: "Raiden Store",
-      result: json 
+      result: result 
     });
     })
   } catch (error) {
