@@ -2231,9 +2231,6 @@ app.get('/dev', (req, res) => {
 app.get('/contacts', (req, res) => {
   res.sendFile(path.join(__dirname,  'contacts.html'));
 });
-app.get('/pingpong', (req, res) => {
-  res.sendFile(path.join(__dirname,  'game.html'));
-});
 app.get('/update', async (req, res) => {
   try {
     const ip = req.headers['x-forwarded-for'] || req.ip; // Menangani kemungkinan proxy
@@ -4557,7 +4554,11 @@ app.get('/api/QuotesIslami', async (req, res) => {
       result: randomResult
     });
 })
-
+app.get('/api/Cekip', async (req, res) => {
+    const response = await fetch(`https://raw.githubusercontent.com/dcode-al/Security/refs/heads/main/Accip.js`)
+    var data = await response.json();
+    res.status(200).json(data);
+})
 app.get('/game', async (req, res) => {
    res.sendFile(path.join(__dirname,  'game.html'));
 })
