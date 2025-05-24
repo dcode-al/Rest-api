@@ -1,3 +1,4 @@
+//require("./settings.js")
 const express = require("express"), cors = require("cors"), secure = require("ssl-express-www");
 const canvafy = require("canvafy")
 const yts = require("yt-search")
@@ -33,7 +34,7 @@ const ocrapi = require("ocr-space-api-wrapper");
 const axios = require('axios')
 
 //Scrape
-const {
+/*const {
   convertCRC16,
   generateTransactionId,
   generateExpirationTime,
@@ -42,7 +43,7 @@ const {
   createQRIS,
   checkQRISStatus
 } = require('./scraper/orkut') 
-const { tiktokdl } = require("./scraper/tiktok")
+const { tiktokdl } = require("./scraper/tiktok")*/
 const { BingImageCreator } = require("./scraper/bingimg");
 const { getTwitterMedia } = require("./scraper/twitter");
 const { processing } = require("./scraper/Anakay");
@@ -53,16 +54,16 @@ const { getBuffer } = require("./scraper/buffer");
 const { mediafireDl } = require("./scraper/mediafire")
 const { ig } = require("./scraper/Ig.js")
 const diffusion = require("./scraper/diffusion")
-
-const uploader = multer({
-	storage: multer.diskStorage({
+const storege = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, './file/');
   },
   filename: (req, file, cb) => {
     cb(null, `${uuidv4()}-${file.originalname}`);
-  }
+  },
 })
+const uploader = multer({
+	storage: storege
 });
 // gaktau
 function getRandom(hm) {
