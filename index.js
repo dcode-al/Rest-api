@@ -1,4 +1,3 @@
-require("./settings.js")
 const express = require("express"), cors = require("cors"), secure = require("ssl-express-www");
 const canvafy = require("canvafy")
 const yts = require("yt-search")
