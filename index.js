@@ -2265,32 +2265,6 @@ app.get('/djviralnya', (req, res) => {
   res.sendFile(path.join(__dirname,  'ytdl (1).mp3'));
 });
 
-app.get('/api/orkut/createpayment', async (req, res) => {
-    const { apikey, amount } = req.query;
-    if (!apikey) {
-    return res.json("Isi Parameter Apikey.");
-    }
-    const check = global.apikey
-    if (!check.includes(apikey)) return res.json("Apikey Tidak Valid!.")
-    if (!amount) {
-    return res.json("Isi Parameter Amount.")
-    }
-    const { codeqr } = req.query;
-    if (!codeqr) {
-    return res.json("Isi Parameter CodeQr menggunakan qris code kalian.");
-    }
-    try {
-        const qrData = await createQRIS(amount, codeqr);
-        res.status(200).json({ 
-           status: 200, 
-           creator: global.creator, 
-            result: qrData 
-        });        
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-})
-
 // Endpoint untuk smartContract
 app.get('/api/smartcontract', async (req, res) => {
   try {
@@ -4598,23 +4572,7 @@ app.get('/api/Cekip', async (req, res) => {
     var data = await response.json();
     res.status(200).json(data);
 })
-app.get("/api/tiktokdl", async (req, res) => {
-    const { url } = req.query;
-    if (!url) return res.json("Isi Parameternya!");
 
-    try {
-        var anu = await tiktokdl.fetchData(`${url}`)
-
-        res.json({
-            status: true,
-            creator: global.creator,
-            result: anu     
-        });
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({ error: "An error occurred while fetching data." });
-    }
-})
 app.get('/game', async (req, res) => {
    res.sendFile(path.join(__dirname,  'game.html'));
 })
