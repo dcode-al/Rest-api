@@ -2400,14 +2400,12 @@ app.get('/api/coba', async (req, res) => {
     if (!message) {
       return res.status(400).json({ error: 'Parameter "url" tidak ditemukan' });
     }
-    tiktokdl(message)
-    .then((json) => {
+    const asu = await tiktokdl(message)
     res.status(200).json({
       status: 200,
       creator: "Raiden Store",
-      result: json 
+      result: asu 
     });
-    })
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
