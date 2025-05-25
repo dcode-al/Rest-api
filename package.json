@@ -24,6 +24,7 @@
     "form-data": "4.0.0",
     "qs": "^6.12.1",
     "mongodb": "^5.5.0",
+    "node-upload-images": "^1.0.1",
     "mongoose": "^6.11.1",
     "node-gtts": "^2.0.2",
     "nodemailer": "^6.7.2",
