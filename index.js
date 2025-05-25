@@ -4587,6 +4587,87 @@ app.get('/api/QuotesIslami', async (req, res) => {
     });
 })
 
+app.get('/api/hentai/blowjob', async (req, res) => {
+  var response = await fetch(`https://api.waifu.pics/nsfw/blowjob`);
+    var data = await response.json();
+    var { url: result } = data;
+    var requestSettings = {
+        url: result,
+        method: 'GET',
+        encoding: null
+    };
+    request(requestSettings, function (error, response, body) {
+        res.set('Content-Type', 'image/png');
+        res.send(body);
+});
+});
+app.get('/api/hentai/trap', async (req, res) => {
+  var response = await fetch(`https://api.waifu.pics/nsfw/trap`);
+    var data = await response.json();
+    var { url: result } = data;
+    var requestSettings = {
+        url: result,
+        method: 'GET',
+        encoding: null
+    };
+    request(requestSettings, function (error, response, body) {
+        res.set('Content-Type', 'image/png');
+        res.send(body);
+});
+});
+app.get('/api/hentai/waifu', async (req, res) => {
+  var response = await fetch(`https://api.waifu.pics/nsfw/waifu`);
+    var data = await response.json();
+    var { url: result } = data;
+    var requestSettings = {
+        url: result,
+        method: 'GET',
+        encoding: null
+    };
+    request(requestSettings, function (error, response, body) {
+        res.set('Content-Type', 'image/png');
+        res.send(body);
+});
+});
+app.get('/api/hentai/neko', async (req, res) => {
+  var response = await fetch(`https://api.waifu.pics/nsfw/neko`);
+    var data = await response.json();
+    var { url: result } = data;
+    var requestSettings = {
+        url: result,
+        method: 'GET',
+        encoding: null
+    };
+    request(requestSettings, function (error, response, body) {
+        res.set('Content-Type', 'image/png');
+        res.send(body);
+});
+});
+app.get('/api/githubstalk', async (req, res) => {
+  try {
+    const id = req.query.query;
+    if (!id) {
+      return res.status(400).json({ 'Masukan Lokasi Cuaca' });
+    }
+    let response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${id}&units=metric&appid=060a6bcfa19809c2cd4d97a212b19273&language=id`)
+
+    res.status(200).json({
+      status: 200,
+      creator: "Raiden Store",
+      result: 
+   response.data.name
+   response.data.sys.country
+   response.data.weather[0].description
+   response.data.main.temp + "°C"
+   response.data.main.temp_min + "°C"
+   response.data.main.temp_max + "°C"
+   response.data.main.humidity + "%"
+   response.data.wind.speed + "km/h"
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 app.use((req, res, next) => {
   res.sendFile(path.join(__dirname,  '404.html'));
 });
