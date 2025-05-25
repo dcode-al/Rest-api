@@ -30,7 +30,7 @@ const { BingImageCreator } = require("./scraper/bingimg");
 const { getTwitterMedia } = require("./scraper/twitter");
 const { processing } = require("./scraper/Anakay");
 const ptz = require('./scraper/ptz') 
-//const { createQRIS } = require('./scraper/orkut')
+const { createQRIS } = require('./scraper/orkut')
 const { soundcloudsearch } = require('./scraper/scrapernew.js') 
 const { ttSearch } = require('./scraper/api.js');
 const { getBuffer } = require("./scraper/buffer");
@@ -2320,7 +2320,7 @@ res.status(500).send("Internal Server Error");
 });
 
 
-/*app.get('/api/orkut', async (req, res) => {
+app.get('/api/orkut', async (req, res) => {
   try {
     const amount = req.query.url;
     if (!amount) {
@@ -2340,7 +2340,7 @@ res.status(500).send("Internal Server Error");
     res.status(500).json({ error: "Eror" });
   }
 });
-*/
+
 app.get('/api/drive', async (req, res) => {
   try {
     const message = req.query.url;
