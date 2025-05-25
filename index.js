@@ -494,17 +494,16 @@ encodedParams.set('hd', '1');
         data: encodedParams
       });
       const videos = response.data.data;
-        const result = {
+        resolve({
           title: videos.title,
           cover: videos.cover,
           origin_cover: videos.origin_cover,
           no_watermark: videos.play,
           watermark: videos.wmplay,
           music: videos.music
-        };
-        resolve(result);
+        });
     } catch (error) {
-      reject({ code: 503, status: false, result: err }));
+      reject(error);
     }
   });
 }
@@ -2429,16 +2428,18 @@ app.get('/api/tiktok', async (req, res) => {
 });
 app.get('/api/coba', async (req, res) => {
   try {
-    const message = req.query.url;
+    const message = req.query.query;
     if (!message) {
       return res.status(400).json({ error: 'Parameter "url" tidak ditemukan' });
     }
-    const asu = await tiktok2(message)
+    tiktok2(message)
+    .then((result) => {
     res.status(200).json({
       status: 200,
       creator: "Raiden Store",
-      result: asu 
+      result 
     });
+    })
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
