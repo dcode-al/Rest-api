@@ -4643,7 +4643,7 @@ app.get('/api/hentai/neko', async (req, res) => {
         res.send(body);
 });
 });
-app.get('/api/cuaca', async (req, res) => {
+/*app.get('/api/cuaca', async (req, res) => {
   try {
     const id = req.query.query;
     if (!id) {
@@ -4668,7 +4668,7 @@ app.get('/api/cuaca', async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-});
+});*/
 app.use((req, res, next) => {
   res.sendFile(path.join(__dirname,  '404.html'));
 });
