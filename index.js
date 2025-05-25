@@ -4343,7 +4343,7 @@ app.get('/api/Cekip', async (req, res) => {
     }
     try {
     const check = global.apikey
-    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey."})
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
     const response = await fetch(`https://raw.githubusercontent.com/dcode-al/Security/refs/heads/main/Accip.js`)
     var data = await response.json();
     res.status(200).json(data);
@@ -4541,7 +4541,7 @@ app.get('/api/QuotesIslami', async (req, res) => {
     var randomIndex = Math.floor(Math.random() * data.length);
     var randomResult = data[randomIndex];
     res.status(200).json({
-      creator: `Raiden Store`,
+      creator: global.creator,
       result: randomResult
     });
 })
