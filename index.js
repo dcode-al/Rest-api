@@ -1,3 +1,4 @@
+require("./settings.js")
 const express = require("express"), cors = require("cors"), secure = require("ssl-express-www");
 const canvafy = require("canvafy")
 const yts = require("yt-search")
@@ -4529,9 +4530,19 @@ app.get('/api/QuotesIslami', async (req, res) => {
     });
 })
 app.get('/api/Cekip', async (req, res) => {
+  const { apikey } = req.query;
+    if (!apikey) {
+    return res.status("Isi Parameter Apikey.");
+    }
+    try {
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status("Apikey Tidak Valid!.")
     const response = await fetch(`https://raw.githubusercontent.com/dcode-al/Security/refs/heads/main/Accip.js`)
     var data = await response.json();
     res.status(200).json(data);
+    } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 })
 
 app.use((req, res, next) => {
