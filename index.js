@@ -2297,6 +2297,9 @@ app.get('/status', (req, res) => {
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname,  'dashboard.html'));
 });
+app.get('/c', (req, res) => {
+  res.sendFile(path.join(__dirname,  'index.html'));
+});
 app.get('/pingpong', (req, res) => {
   res.sendFile(path.join(__dirname,  'game.html'));
 });
@@ -2408,27 +2411,10 @@ app.get('/api/twitterdl', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
 app.get('/api/tiktok', async (req, res) => {
   try {
     const message = req.query.url;
-    if (!message) {
-      return res.status(400).json({ error: 'Parameter "url" tidak ditemukan' });
-    }
-    tiktok(message)
-    .then((json) => {
-    res.status(200).json({
-      status: 200,
-      creator: "Raiden Store",
-      result: json 
-    });
-    })
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-app.get('/api/coba', async (req, res) => {
-  try {
-    const message = req.query.query;
     if (!message) {
       return res.status(400).json({ error: 'Parameter "url" tidak ditemukan' });
     }
@@ -2437,7 +2423,7 @@ app.get('/api/coba', async (req, res) => {
     res.status(200).json({
       status: 200,
       creator: "Raiden Store",
-      result 
+      result: result 
     });
     })
   } catch (error) {
