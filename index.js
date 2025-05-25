@@ -30,6 +30,7 @@ const { BingImageCreator } = require("./scraper/bingimg");
 const { getTwitterMedia } = require("./scraper/twitter");
 const { processing } = require("./scraper/Anakay");
 const ptz = require('./scraper/ptz') 
+const { createQRIS } = require('./orkut')
 const { soundcloudsearch } = require('./scraper/scrapernew.js') 
 const { ttSearch } = require('./scraper/api.js');
 const { getBuffer } = require("./scraper/buffer");
@@ -2317,6 +2318,35 @@ console.error(error);
 res.status(500).send("Internal Server Error");
 }
 });
+
+app.get('/api/orkut', async (req, res) => {
+    const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json("Isi Parameter Apikey.");
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json("Apikey Tidak Valid!.")
+    const { amount } = req.query;
+    if (!amount) {
+    return res.status(400).json("Isi Parameter CodeQr menggunakan qris code kalian.");
+    }
+    const { codeqr } = req.query;
+    if (!codeqr) {
+    return res.status(400).json("Isi Parameter CodeQr menggunakan qris code kalian.");
+    }
+    try {
+        const qrData = await createQRIS(amount, codeqr);
+        res.status(200).json({
+          status: 200,
+          creator: "Vreden Official",
+         result: qrData
+         });   
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+})
+
+
 app.get('/api/drive', async (req, res) => {
   try {
     const message = req.query.url;
@@ -4541,7 +4571,7 @@ app.get('/api/QuotesIslami', async (req, res) => {
     var randomIndex = Math.floor(Math.random() * data.length);
     var randomResult = data[randomIndex];
     res.status(200).json({
-      creator: global.creator,
+      creator: "Raiden Store",
       result: randomResult
     });
 })
