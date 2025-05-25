@@ -1,3 +1,3 @@
 
-global.creator = "Raiden1 Store"
-global.apikey = ["Alpin", "new", "new"]
+global.creator = "Raiden Store"
+global.apikey = ["new", "new", "new"]

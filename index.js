@@ -2295,12 +2295,14 @@ app.get('/status', (req, res) => {
 });
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname,  'dashboard.html'));
+  res.sendFile(path.join(__dirname, 'home.html'));
 });
-app.get('/c', (req, res) => {
-  res.sendFile(path.join(__dirname,  'index.html'));
+
+app.get('/api', (req, res) => {
+  res.sendFile(path.join(__dirname, 'rest.html'));
 });
-app.get('/pingpong', (req, res) => {
+
+app.get('/game', (req, res) => {
   res.sendFile(path.join(__dirname,  'game.html'));
 });
 
@@ -2355,28 +2357,6 @@ res.status(500).send("Internal Server Error");
 }
 });
 
-
-/*app.get('/api/orkut', async (req, res) => {
-  try {
-    const amount = req.query.url;
-    if (!amount) {
-      return res.status(400).json({ error: 'Amount' });
-    }
-    const codeqr = req.query.url;
-    if (!codeqr) {
-      return res.status(400).json({ error: 'code qr' });
-    }
-    let down = await createQRIS(amount, codeqr);
-    res.status(200).json({
-      status: 200,
-      creator: "Raiden Store",
-      result: down
-    });
-  } catch (error) {
-    res.status(500).json({ error: "Eror" });
-  }
-});
-*/
 app.get('/api/drive', async (req, res) => {
   try {
     const message = req.query.url;
