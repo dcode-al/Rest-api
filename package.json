@@ -55,6 +55,6 @@
     "express-rate-limit": "^5.5.1",
     "express-session": "^1.17.1",
     "ssl-express-www": "^3.2.1",
-    "node-upload-images": "^1.0.1",
+    "node-upload-images": "^1.0.1"
   }
 }
