@@ -4643,32 +4643,32 @@ app.get('/api/hentai/neko', async (req, res) => {
         res.send(body);
 });
 });
-/*app.get('/api/cuaca', async (req, res) => {
+app.get('/api/cuaca', async (req, res) => {
   try {
     const id = req.query.query;
     if (!id) {
       return res.status(400).json({ 'Masukan Lokasi Cuaca' });
     }
-    let response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${id}&units=metric&appid=060a6bcfa19809c2cd4d97a212b19273&language=id`)
-
+    let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${id}&units=metric&appid=060a6bcfa19809c2cd4d97a212b19273&language=id`)
+    const data = await response.json();
     res.status(200).json({
       status: 200,
       creator: "Raiden Store",
       result: {
-   response.data.name
-   response.data.sys.country
-   response.data.weather[0].description
-   response.data.main.temp + "°C"
-   response.data.main.temp_min + "°C"
-   response.data.main.temp_max + "°C"
-   response.data.main.humidity + "%"
-   response.data.wind.speed + "km/h"
+          data.name
+          data.sys.country
+          data.weather[0].description
+          data.main.temp + "°C"
+          data.main.temp_min + "°C"
+          data.main.temp_max + "°C"
+          data.main.humidity + "%"
+          data.wind.speed + "km/h"
    }
     });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-});*/
+})
 app.use((req, res, next) => {
   res.sendFile(path.join(__dirname,  '404.html'));
 });
