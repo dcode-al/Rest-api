@@ -2298,8 +2298,8 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'home.html'));
 });
 
-app.get('/coba', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dashboard.html'));
+app.get('/rest', (req, res) => {
+  res.sendFile(path.join(__dirname, 'rest.html'));
 });
 
 app.get('/game', (req, res) => {
