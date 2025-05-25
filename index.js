@@ -4643,7 +4643,7 @@ app.get('/api/hentai/neko', async (req, res) => {
         res.send(body);
 });
 });
-app.get('/api/githubstalk', async (req, res) => {
+app.get('/api/cuaca', async (req, res) => {
   try {
     const id = req.query.query;
     if (!id) {
@@ -4654,7 +4654,7 @@ app.get('/api/githubstalk', async (req, res) => {
     res.status(200).json({
       status: 200,
       creator: "Raiden Store",
-      result: 
+      result: {
    response.data.name
    response.data.sys.country
    response.data.weather[0].description
@@ -4663,6 +4663,7 @@ app.get('/api/githubstalk', async (req, res) => {
    response.data.main.temp_max + "°C"
    response.data.main.humidity + "%"
    response.data.wind.speed + "km/h"
+   }
     });
   } catch (error) {
     res.status(500).json({ error: error.message });
