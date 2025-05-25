@@ -2299,7 +2299,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/coba', (req, res) => {
-  res.sendFile(path.join(__dirname, 'rest.html'));
+  res.sendFile(path.join(__dirname, 'dashboard.html'));
 });
 
 app.get('/game', (req, res) => {
