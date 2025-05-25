@@ -2298,7 +2298,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'home.html'));
 });
 
-app.get('/api', (req, res) => {
+app.get('/coba', (req, res) => {
   res.sendFile(path.join(__dirname, 'rest.html'));
 });
 
