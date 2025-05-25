@@ -4343,7 +4343,7 @@ app.get('/api/Cekip', async (req, res) => {
     }
     try {
     const check = global.apikey
-    if (!check.includes(apikey)) return res.status(400).json({ error: "Isi Parameter Apikey."})
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey."})
     const response = await fetch(`https://raw.githubusercontent.com/dcode-al/Security/refs/heads/main/Accip.js`)
     var data = await response.json();
     res.status(200).json(data);
