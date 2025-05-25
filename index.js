@@ -2319,33 +2319,27 @@ res.status(500).send("Internal Server Error");
 }
 });
 
-app.get('/api/orkut', async (req, res) => {
-    const { apikey } = req.query;
-    if (!apikey) {
-    return res.status(400).json("Isi Parameter Apikey.");
-    }
-    const check = global.apikey
-    if (!check.includes(apikey)) return res.status(400).json("Apikey Tidak Valid!.")
-    const { amount } = req.query;
-    if (!amount) {
-    return res.status(400).json("Isi Parameter CodeQr menggunakan qris code kalian.");
-    }
-    const { codeqr } = req.query;
-    if (!codeqr) {
-    return res.status(400).json("Isi Parameter CodeQr menggunakan qris code kalian.");
-    }
-    try {
-        const qrData = await createQRIS(amount, codeqr);
-        res.status(200).json({
-          status: 200,
-          creator: "Vreden Official",
-         result: qrData
-         });   
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-})
 
+app.get('/api/orkut', async (req, res) => {
+  try {
+    const amount = req.query.url;
+    if (!amount) {
+      return res.status(400).json({ error: 'Amount' });
+    }
+    const codeqr = req.query.url;
+    if (!codeqr) {
+      return res.status(400).json({ error: 'code qr' });
+    }
+    let down = await createQRIS(amount, codeqr);
+    res.status(200).json({
+      status: 200,
+      creator: "Vreden Official",
+      result: down
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 app.get('/api/drive', async (req, res) => {
   try {
