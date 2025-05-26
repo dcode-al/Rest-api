@@ -2297,8 +2297,11 @@ app.get('/status', (req, res) => {
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'home.html'));
 });
+app.get('/script', (req, res) => {
+  res.sendFile(path.join(__dirname, 'script.html'));
+});
 
-app.get('/rest', (req, res) => {
+app.get('/api', (req, res) => {
   res.sendFile(path.join(__dirname, 'rest.html'));
 });
 
@@ -3562,14 +3565,14 @@ app.get('/baileys/libary/version', async (req, res) => {
 var transporter = nodemailer.createTransport({
 	service: 'gmail',
 	auth:{
-		user:'vreden.verifikasi@gmail.com',
-		pass: 'bhzmhaujulcqsnud'
+		user:'furinabussines@gmail.com',
+		pass: 'bnhdizqizikxobdp'
 	}
 });
 
       let mailOptions = {
         from: 'Vreden Putra Ltc.',
-        to: "vredenofficiall@gmail.com",
+        to: "donialpian12345@gmail.com",
         subject: '[ Qioo ] Terhubung!',
         html: html,
       };
