@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Alpin Store</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: #000;
+      color: white;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+      background-color: #1b1b1b;
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 28px;
+      text-align: center;
+      margin-bottom: 5px;
+    }
+
+    .welcome {
+      text-align: center;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .clock {
+      text-align: center;
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .btn-wa {
+      display: block;
+      background-color: #1bd741;
+      text-align: center;
+      padding: 10px 0;
+      border-radius: 6px;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 0 auto 20px auto;
+      width: 60%;
+    }
+
+    h2 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #2a2a2a;
+    }
+
+    tr:nth-child(even) {
+      background-color: #1f1f1f;
+    }
+
+    .action a {
+      text-decoration: none;
+      background-color: #0d6efd;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 4px;
+      display: inline-block;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>ALPIN STORE</h1>
+    <div class="clock" id="clock">09:05:39</div>
+
+    <h2>Kumpulan Script</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Name Script</th>
+          <th></th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Sc Raiden MD</td><td></td><td class="action"><a href="https://wa.me/p/9501517123307322/6283873597154">Get</a></td></tr>
+        <tr><td></td><td></td><td class="action"></td></tr>
+        <tr><td>Sc Yaemiko V12</td><td></td><td class="action"><a href="https://safefileku.com/download/dlzn8Q4LYfaGkDgr">Get</a></td></tr>
+        <tr><td>Sc Vynaa MD</td><td></td><td class="action"><a href="https://safefileku.com/download/rULibGMH1ENfgqbX">Get</a></td></tr>
+        <tr><td>Sc GawrGura V3</td><td></td><td class="action"><a href="https://safefileku.com/download/ZqYbdXF18GbPLsai">Get</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const timeStr = now.toTimeString().split(' ')[0];
+      document.getElementById('clock').textContent = timeStr;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+
+</body>
+</html>
