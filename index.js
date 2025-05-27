@@ -2395,8 +2395,14 @@ app.get('/api/twitterdl', async (req, res) => {
   }
 });
 
-app.get('/api/tiktok', async (req, res) => {
-  try {
+app.get('/api/downloader/tiktok', async (req, res) => {
+ try {
+    const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
     const message = req.query.url;
     if (!message) {
       return res.status(400).json({ error: 'Parameter "url" tidak ditemukan' });
