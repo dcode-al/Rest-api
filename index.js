@@ -2360,8 +2360,14 @@ res.status(500).send("Internal Server Error");
 }
 });
 
-app.get('/api/drive', async (req, res) => {
+app.get('/api/downloader/drive', async (req, res) => {
   try {
+    const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
     const message = req.query.url;
     if (!message) {
       return res.status(400).json({ error: 'Parameter "url" tidak ditemukan' });
@@ -2376,8 +2382,14 @@ app.get('/api/drive', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-app.get('/api/twitterdl', async (req, res) => {
+app.get('/api/downloader/twitterdl', async (req, res) => {
   try {
+    const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
     const message = req.query.url;
     if (!message) {
       return res.status(400).json({ error: 'Parameter "url" tidak ditemukan' });
@@ -2419,8 +2431,14 @@ app.get('/api/downloader/tiktok', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-app.get('/api/sfile', async (req, res) => {
+app.get('/api/downloader/sfile', async (req, res) => {
   try {
+    const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
     const message = req.query.url;
     if (!message) {
       return res.status(400).json({ error: 'Parameter "url" tidak ditemukan' });
@@ -2437,6 +2455,12 @@ app.get('/api/sfile', async (req, res) => {
 });
 app.get('/api/sfile-search', async (req, res) => {
   try {
+    const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
     const message = req.query.query;
     if (!message) {
       return res.status(400).json({ error: 'Parameter "url" tidak ditemukan' });
@@ -2614,8 +2638,14 @@ app.get('/api/convertmp4', async (req, res) => {
             res.set('Content-Type', 'video/mp4');
         res.send(ayaaa);
 });
-app.get('/api/ytmp4', async (req, res) => {
+app.get('/api/downloader/ytmp4', async (req, res) => {
   try {
+    const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
     const message = req.query.url;
     if (!message) {
       return res.status(400).json({ error: 'Parameter "url" tidak ditemukan' });
@@ -2650,8 +2680,14 @@ app.get('/api/yts', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-app.get('/api/mediafiredl', async (req, res) => {
+app.get('/api/downloader/mediafire', async (req, res) => {
   try {
+    const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
     const message = req.query.url;
     if (!message) {
       return res.status(400).json({ error: 'Parameter "url" tidak ditemukan' });
@@ -2701,9 +2737,15 @@ app.get('/api/xnxxsearch', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-app.get('/api/xnxxdl', async (req, res) => {
+app.get('/api/downloader/xnxx', async (req, res) => {
   try {
-    const message = req.query.query;
+    const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
+    const message = req.query.url;
     if (!message) {
       return res.status(400).json({ error: 'Parameter "url" tidak ditemukan' });
     }
@@ -2719,8 +2761,14 @@ app.get('/api/xnxxdl', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-app.get('/api/igdownload', async (req, res) => {
+app.get('/api/downloader/instgram', async (req, res) => {
   try {
+    const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
     const message = req.query.url;
     if (!message) {
       return res.status(400).json({ error: 'Parameter "url" tidak ditemukan' });
@@ -2735,8 +2783,14 @@ app.get('/api/igdownload', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-app.get('/api/teraboxdl', async (req, res) => {
+app.get('/api/downloader/teraboxdl', async (req, res) => {
   try {
+    const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
     const message = req.query.url;
     if (!message) {
       return res.status(400).json({ error: 'Parameter "url" tidak ditemukan' });
@@ -2771,8 +2825,14 @@ const isin = await bufferlahh(message)
     res.status(500).json({ error: error.message });
   }
 });
-app.get('/api/ytmp3', async (req, res) => {
+app.get('/api/downloader/ytmp3', async (req, res) => {
   try {
+    const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
     const message = req.query.url;
     if (!message) {
       return res.status(400).json({ error: 'Parameter "url" tidak ditemukan' });
@@ -2789,8 +2849,14 @@ app.get('/api/ytmp3', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-app.get('/api/spotify', async (req, res) => {
+app.get('/api/downloader/spotify', async (req, res) => {
   try{
+    const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
     const message = req.query.url;
     if (!message) {
       return res.status(400).json({ error: 'Parameter "url" tidak ditemukan' });
@@ -2940,7 +3006,7 @@ app.get('/api/remini', async (req, res) => {
         res.send(data);
 });			
 });
-  app.get('/api/capcutdl', async (req, res) => {
+  app.get('/api/downloader/capcut', async (req, res) => {
   try {
     const message = req.query.url;
     if (!message) {
@@ -3038,8 +3104,14 @@ app.get('/api/searchsticker', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-app.get('/api/tikmusic', async (req, res) => {
-  const message = req.query.url;
+app.get('/api/downloader/ttmusic', async (req, res) => {
+    const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
+    const message = req.query.url;
     if (!message) {
       return res.status(400).json({ error: 'Parameter "query" tidak ditemukan' });
     }
@@ -4350,8 +4422,14 @@ app.get('/api/soundcloud', async (req, res) => {
   res.status(500).json({ error: error.message });
   }
 });
-app.get('/api/fbdl', async (req, res) => {
+app.get('/api/downloader/fbdl', async (req, res) => {
   try {
+    const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
     const message = req.query.url;
     if (!message) {
       return res.status(400).json({ error: 'Parameter "query" tidak ditemukan' });
