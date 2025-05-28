@@ -3704,6 +3704,10 @@ app.get('/api/search/playstore', async (req, res) => {
     if (!message) {
       return res.status(400).json({ error: 'Parameter "query" tidak ditemukan' });
     }
+    const { apikey } = req.query;
+    if (!apikey) { return res.status(400).json({ error: "Isi Parameter Apikey."}) }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
     PlayStore(message).then((hasil) => {
     res.status(200).json({
       status: 200,
@@ -4682,7 +4686,24 @@ const { apikey } = req.query;
         res.send(body);
 });
 });
-
+app.get('/api/couple', async (req, res) => {
+	try{
+  const url = `https://raw.githubusercontent.com/dcode-al/database/refs/heads/main/Anime/couple.json`;
+    const response = await fetch(url);
+    const data = await response.json();
+    const random = Math.floor(Math.random() * data.length);
+    const result = data[random];
+    res.status(200).json({
+      status: 200,
+      creator: "Raiden Store",
+      result: {
+             Cowo: result.male
+             Cewe: result.female
+    }});
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 app.use((req, res, next) => {
   res.sendFile(path.join(__dirname,  '404.html'));
 });
