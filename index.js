@@ -1738,30 +1738,6 @@ async function aioDownloader(url) {
     throw e
   }
 }
-function tebakgambar() {
-  return new Promise(async(resolve, reject) => {
-    axios.get('https://jawabantebakgambar.net/all-answers/')
-    .then(({
-      data
-    }) => {
-      const $ = cheerio.load(data)
-      const result = []
-      let random = Math.floor(Math.random() * 2836) + 2
-      let link2 = 'https://jawabantebakgambar.net'
-      $(`#images > li:nth-child(${random}) > a`).each(function(a, b) {
-        const img = link2 + $(b).find('img').attr('data-src')
-        const jwb = $(b).find('img').attr('alt')
-        result.push({
-          image: img,
-          jawaban: jwb
-        })
-
-        resolve(result)
-      })
-    })
-    .catch(reject)
-  })
-}
 // myinstant
 
 async function soundMeme() {
@@ -2889,20 +2865,6 @@ app.get('/api/letmegpt', async (req, res) => {
   res.status(500).json({ error: error.message });
   }
 });
-app.get('/api/tebakgambar', async (req, res) => {
-  try{ 
-   tebakgambar()
-  .then((result) => {
-    res.status(200).json({
-      status: 200,
-      creator: "Raiden Store",
-      result 
-    });
-  }) 
-  } catch (error) {
-  res.status(500).json({ error: error.message });
-  }
-});
 app.get('/api/simi', async (req, res) => {
   try{
     const message = req.query.query;
@@ -3158,36 +3120,6 @@ app.get('/api/meme', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-app.get('/api/tebakhero', async (req, res) => {
-let abu = await fetch('https://www.vreden.my.id/cdn/game/tebakhero.json')
-var anu = await abu.json()
-let result = anu[Math.floor(Math.random() * anu.length)]
-let results = {
-jawaban: result.jawaban,
-img: result.img
-}
-
-res.status(200).json({
-      status: 200,
-      creator: "Raiden Store",
-      result: results 
-    });
-});
-app.get('/api/tebakff', async (req, res) => {
-let abu = await fetch('https://www.vreden.my.id/cdn/game/tebakff.json')
-var anu = await abu.json()
-let result = anu[Math.floor(Math.random() * anu.length)]
-let results = {
-jawaban: result.jawaban,
-img: result.img
-}
-
-res.status(200).json({
-      status: 200,
-      creator: "Raiden Store",
-      result: results 
-    });
-});
 app.get('/api/galau', async (req, res) => {
 	  let response = await fetch('https://raw.githubusercontent.com/Rianofc/apis/master/function/galau.json');
         var data = await response.json();
@@ -3319,7 +3251,13 @@ const avatar = req.query.avatar;
   res.set('Content-Type', 'image/png');
         res.send(tweet);
 });
-app.get('/api/notify', async (req, res) => {
+app.get('/api/canvas/welcome', async (req, res) => {
+const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
 const background = req.query.background;
     if (!background) {
       return res.status(400).json({ error: 'Parameter "background" tidak ditemukan' });
@@ -3355,8 +3293,14 @@ const {
   res.set('Content-Type', 'image/png');
         res.send(welcome);
 });
-app.get('/api/saldo', async (req, res) => {
-  const background = req.query.background;
+app.get('/api/canvas/profile', async (req, res) => {
+    const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
+    const background = req.query.background;
     if (!background) {
       return res.status(400).json({ error: 'Parameter "background" tidak ditemukan' });
     }
@@ -3411,8 +3355,14 @@ res.set('Content-Type', 'image/png');
         res.send(ranked);
 });
 
-app.get('/api/levelup', async (req, res) => {
-  const background = req.query.background;
+app.get('/api/canvas/levelup', async (req, res) => {
+    const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
+    const background = req.query.background;
     if (!background) {
       return res.status(400).json({ error: 'Parameter "background" tidak ditemukan' });
     }
@@ -3450,32 +3400,6 @@ const levelUp = await new canvafy.LevelUp()
 .build();
 res.set('Content-Type', 'image/png');
         res.send(levelUp);
-});
-
-app.get('/api/leaderboard', async (req, res) => {
-  const background = req.query.background;
-    if (!background) {
-      return res.status(400).json({ error: 'Parameter "background" tidak ditemukan' });
-    }
-	
-  const data = req.query.data;
-    if (!data) {
-      return res.status(400).json({ error: 'Parameter "data" tidak ditemukan' });
-    }
-	const scorelabel = req.query.scorelabel;
-    if (!scorelabel) {
-      return res.status(400).json({ error: 'Parameter "scorelabel" tidak ditemukan' });
-    }
-const top = await new canvafy.Top()
-.setOpacity(0.6)
-.setScoreMessage("Rank Point:")
-.setabbreviateNumber(false)
-.setBackground("image", background)
-.setColors({ box: '#212121', username: '#ffffff', score: '#ffffff', firstRank: '#f7c716', secondRank: '#9e9e9e', thirdRank: '#94610f' })
-.setUsersData(JSON.parse(data))
-.build();
-res.set('Content-Type', 'image/png');
-        res.send(top);
 });
 
 app.get('/api/send-kode-email', async (req, res) => {
@@ -4717,6 +4641,12 @@ app.get('/api/hentai/waifu', async (req, res) => {
 });
 });
 app.get('/api/hentai/neko', async (req, res) => {
+const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
   var response = await fetch(`https://api.waifu.pics/nsfw/neko`);
     var data = await response.json();
     var { url: result } = data;
