@@ -4691,15 +4691,11 @@ app.get('/api/couple', async (req, res) => {
   const url = `https://raw.githubusercontent.com/dcode-al/database/refs/heads/main/Anime/couple.json`;
     const response = await fetch(url);
     const data = await response.json();
-    const random = Math.floor(Math.random() * data.length);
-    const result = data[random];
     res.status(200).json({
       status: 200,
       creator: "Raiden Store",
-      result: {
-             Cowo: result.male
-             Cewe: result.female
-    }});
+      result: data
+      });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
