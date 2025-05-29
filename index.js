@@ -3340,12 +3340,6 @@ app.get('/api/canvas/profile', async (req, res) => {
     barcolor = "#00BFFF",
     statuscolor = "#00BFFF"
     } = req.query
-    const { apikey } = req.query;
-    if (!apikey) {
-    return res.status(400).json({ error: "Isi Parameter Apikey."})
-    }
-    const check = global.apikey
-    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
 const ranked = await new canvafy.Rank()
 .setAvatar(avatar)
 .setBackground("image", background)
