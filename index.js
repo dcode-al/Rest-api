@@ -3296,13 +3296,7 @@ const {
         res.send(welcome);
 });
 app.get('/api/canvas/profile', async (req, res) => {
-    const { apikey } = req.query;
-    if (!apikey) {
-    return res.status(400).json({ error: "Isi Parameter Apikey."})
-    }
-    const check = global.apikey
-    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
-    const background = req.query.background;
+  const background = req.query.background;
     if (!background) {
       return res.status(400).json({ error: 'Parameter "background" tidak ditemukan' });
     }
@@ -3356,7 +3350,6 @@ const ranked = await new canvafy.Rank()
 res.set('Content-Type', 'image/png');
         res.send(ranked);
 });
-
 app.get('/api/canvas/levelup', async (req, res) => {
     const { apikey } = req.query;
     if (!apikey) {
