@@ -4667,30 +4667,15 @@ app.get('/api/hentai/waifu', async (req, res) => {
 });
 });
 app.get('/api/hentai/neko', async (req, res) => {
+try {
 const { apikey } = req.query;
     if (!apikey) {
     return res.status(400).json({ error: "Isi Parameter Apikey."})
     }
     const check = global.apikey
     if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
-  var response = await fetch(`https://api.waifu.pics/nsfw/neko`);
+    var response = await fetch(`https://api.waifu.pics/nsfw/neko`);
     var data = await response.json();
-    var { url: result } = data;
-    var requestSettings = {
-        url: result,
-        method: 'GET',
-        encoding: null
-    };
-    request(requestSettings, function (error, response, body) {
-        res.set('Content-Type', 'image/png');
-        res.send(body);
-});
-});
-app.get('/api/couple', async (req, res) => {
-	try{
-  const url = `https://raw.githubusercontent.com/dcode-al/database/refs/heads/main/Anime/couple.json`;
-    const response = await fetch(url);
-    const data = await response.json();
     res.status(200).json({
       status: 200,
       creator: "Raiden Store",
@@ -4700,6 +4685,7 @@ app.get('/api/couple', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
 app.use((req, res, next) => {
   res.sendFile(path.join(__dirname,  '404.html'));
 });
