@@ -3276,12 +3276,6 @@ const avatar = req.query.avatar;
     if (!avatar) {
       return res.status(400).json({ error: 'Parameter "avatar" tidak ditemukan' });
     }
-const { apikey } = req.query;
-    if (!apikey) {
-    return res.status(400).json({ error: "Isi Parameter Apikey."})
-    }
-const check = global.apikey
-    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
 const {
     border = "#00BFFF",
     avatarborder = "#00BFFF",
@@ -3302,6 +3296,12 @@ const {
         res.send(welcome);
 });
 app.get('/api/canvas/profile', async (req, res) => {
+    const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
     const background = req.query.background;
     if (!background) {
       return res.status(400).json({ error: 'Parameter "background" tidak ditemukan' });
@@ -3340,6 +3340,7 @@ app.get('/api/canvas/profile', async (req, res) => {
     barcolor = "#00BFFF",
     statuscolor = "#00BFFF"
     } = req.query
+    
 const ranked = await new canvafy.Rank()
 .setAvatar(avatar)
 .setBackground("image", background)
@@ -3357,10 +3358,17 @@ res.set('Content-Type', 'image/png');
 });
 
 app.get('/api/canvas/levelup', async (req, res) => {
+    const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
     const background = req.query.background;
     if (!background) {
       return res.status(400).json({ error: 'Parameter "background" tidak ditemukan' });
     }
+	
   const name = req.query.name;
     if (!name) {
       return res.status(400).json({ error: 'Parameter "name" tidak ditemukan' });
@@ -3377,12 +3385,6 @@ app.get('/api/canvas/levelup', async (req, res) => {
     if (!avatar) {
       return res.status(400).json({ error: 'Parameter "avatar" tidak ditemukan' });
     }
-    const { apikey } = req.query;
-    if (!apikey) {
-    return res.status(400).json({ error: "Isi Parameter Apikey."})
-    }
-    const check = global.apikey
-    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
     const {
     border = "#000000",
     avatarborder = "#00BFFF",
