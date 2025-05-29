@@ -3335,18 +3335,17 @@ app.get('/api/canvas/profile', async (req, res) => {
     if (!avatar) {
       return res.status(400).json({ error: 'Parameter "avatar" tidak ditemukan' });
     }
+    const {
+    border = "#00BFFF",
+    barcolor = "#00BFFF",
+    statuscolor = "#00BFFF"
+    } = req.query
     const { apikey } = req.query;
     if (!apikey) {
     return res.status(400).json({ error: "Isi Parameter Apikey."})
     }
     const check = global.apikey
     if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
-    const {
-    border = "#00BFFF",
-    barcolor = "#00BFFF",
-    statuscolor = "#00BFFF"
-    } = req.query
-    
 const ranked = await new canvafy.Rank()
 .setAvatar(avatar)
 .setBackground("image", background)
