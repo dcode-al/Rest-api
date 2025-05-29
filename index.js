@@ -3260,12 +3260,6 @@ const avatar = req.query.avatar;
         res.send(tweet);
 });
 app.get('/api/canvas/welcome', async (req, res) => {
-const { apikey } = req.query;
-    if (!apikey) {
-    return res.status(400).json({ error: "Isi Parameter Apikey."})
-    }
-    const check = global.apikey
-    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
 const background = req.query.background;
     if (!background) {
       return res.status(400).json({ error: 'Parameter "background" tidak ditemukan' });
@@ -3282,6 +3276,12 @@ const avatar = req.query.avatar;
     if (!avatar) {
       return res.status(400).json({ error: 'Parameter "avatar" tidak ditemukan' });
     }
+const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
 const {
     border = "#00BFFF",
     avatarborder = "#00BFFF",
@@ -3302,12 +3302,6 @@ const {
         res.send(welcome);
 });
 app.get('/api/canvas/profile', async (req, res) => {
-    const { apikey } = req.query;
-    if (!apikey) {
-    return res.status(400).json({ error: "Isi Parameter Apikey."})
-    }
-    const check = global.apikey
-    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
     const background = req.query.background;
     if (!background) {
       return res.status(400).json({ error: 'Parameter "background" tidak ditemukan' });
@@ -3341,6 +3335,12 @@ app.get('/api/canvas/profile', async (req, res) => {
     if (!avatar) {
       return res.status(400).json({ error: 'Parameter "avatar" tidak ditemukan' });
     }
+    const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
     const {
     border = "#00BFFF",
     barcolor = "#00BFFF",
@@ -3364,17 +3364,10 @@ res.set('Content-Type', 'image/png');
 });
 
 app.get('/api/canvas/levelup', async (req, res) => {
-    const { apikey } = req.query;
-    if (!apikey) {
-    return res.status(400).json({ error: "Isi Parameter Apikey."})
-    }
-    const check = global.apikey
-    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
     const background = req.query.background;
     if (!background) {
       return res.status(400).json({ error: 'Parameter "background" tidak ditemukan' });
     }
-	
   const name = req.query.name;
     if (!name) {
       return res.status(400).json({ error: 'Parameter "name" tidak ditemukan' });
@@ -3391,6 +3384,12 @@ app.get('/api/canvas/levelup', async (req, res) => {
     if (!avatar) {
       return res.status(400).json({ error: 'Parameter "avatar" tidak ditemukan' });
     }
+    const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
     const {
     border = "#000000",
     avatarborder = "#00BFFF",
@@ -4051,7 +4050,6 @@ var requestSettings = {
     });    
 });
 app.get('/api/bocil', async (req, res) => {
-
   let response = await fetch('https://raw.githubusercontent.com/Rianofc/apis/master/function/bocil.json');
         var data = await response.json();
         var randomIndex = Math.floor(Math.random() * data.results.length);
@@ -4424,7 +4422,13 @@ app.get('/api/Cekip', async (req, res) => {
   }
 })
 
-app.get('/api/TiktokNotnot', async (req, res) => {
+app.get('/api/Tiktok/Notnot', async (req, res) => {
+const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
   let response = await fetch('https://raw.githubusercontent.com/dcode-al/database/refs/heads/main/Tiktok/notnot.json');
         var data = await response.json();
         var randomIndex = Math.floor(Math.random() * data.results.length);
@@ -4440,7 +4444,13 @@ app.get('/api/TiktokNotnot', async (req, res) => {
         res.send(body);
     });    
 });
-app.get('/api/TiktokBocil', async (req, res) => {
+app.get('/api/Tiktok/Bocil', async (req, res) => {
+const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
   let response = await fetch('https://raw.githubusercontent.com/Rianofc/apis/master/function/bocil.json');
         var data = await response.json();
         var randomIndex = Math.floor(Math.random() * data.results.length);
@@ -4456,7 +4466,13 @@ app.get('/api/TiktokBocil', async (req, res) => {
         res.send(body);
     });    
 });
-app.get('/api/TiktokGheayubi', async (req, res) => {
+app.get('/api/Tiktok/Gheayubi', async (req, res) => {
+const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
   let response = await fetch('https://raw.githubusercontent.com/dcode-al/database/refs/heads/main/Tiktok/gheayubi.json');
         var data = await response.json();
         var randomIndex = Math.floor(Math.random() * data.length);
@@ -4471,7 +4487,13 @@ app.get('/api/TiktokGheayubi', async (req, res) => {
         res.send(body);
     });    
 });
-app.get('/api/TiktokPanrika', async (req, res) => {
+app.get('/api/Tiktok/Panrika', async (req, res) => {
+const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
   let response = await fetch('https://raw.githubusercontent.com/dcode-al/database/refs/heads/main/Tiktok/panrika.json');
         var data = await response.json();
         var randomIndex = Math.floor(Math.random() * data.length);
@@ -4486,7 +4508,13 @@ app.get('/api/TiktokPanrika', async (req, res) => {
         res.send(body);
     });    
 });
-app.get('/api/TiktokSantuy', async (req, res) => {
+app.get('/api/Tiktok/Santuy', async (req, res) => {
+const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
   let response = await fetch('https://raw.githubusercontent.com/dcode-al/database/refs/heads/main/Tiktok/santuy.json');
         var data = await response.json();
         var randomIndex = Math.floor(Math.random() * data.length);
@@ -4501,7 +4529,13 @@ app.get('/api/TiktokSantuy', async (req, res) => {
         res.send(body);
     });    
 });
-app.get('/api/TiktokGirl', async (req, res) => {
+app.get('/api/Tiktok/Girl', async (req, res) => {
+const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
   let response = await fetch('https://raw.githubusercontent.com/dcode-al/database/refs/heads/main/Tiktok/tiktokgirl.json');
         var data = await response.json();
         var randomIndex = Math.floor(Math.random() * data.length);
@@ -4516,7 +4550,13 @@ app.get('/api/TiktokGirl', async (req, res) => {
         res.send(body);
     });    
 });
-app.get('/api/TiktokUkthi', async (req, res) => {
+app.get('/api/Tiktok/Ukthi', async (req, res) => {
+const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
   let response = await fetch('https://raw.githubusercontent.com/dcode-al/database/refs/heads/main/Tiktok/ukhty.json');
         var data = await response.json();
         var randomIndex = Math.floor(Math.random() * data.length);
@@ -4532,7 +4572,13 @@ app.get('/api/TiktokUkthi', async (req, res) => {
     });    
 });
 
-app.get('/api/QuotesAnime', async (req, res) => {
+app.get('/api/Quotes/Anime', async (req, res) => {
+const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
   try {
     quotesAnime()
     .then((hasil) => {
@@ -4547,7 +4593,13 @@ app.get('/api/QuotesAnime', async (req, res) => {
   }
 });
 
-app.get('/api/QuotesBucin', async (req, res) => {
+app.get('/api/Quotes/Bucin', async (req, res) => {
+const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
     const response = await fetch(`https://raw.githubusercontent.com/dcode-al/database/refs/heads/main/Qoutes/bucin.json`)
     var data = await response.json();
     var randomIndex = Math.floor(Math.random() * data.length);
@@ -4557,7 +4609,13 @@ app.get('/api/QuotesBucin', async (req, res) => {
       result: randomResult
     });
 })
-app.get('/api/QuotesPubg', async (req, res) => {
+app.get('/api/Quotes/Pubg', async (req, res) => {
+const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
     const response = await fetch(`https://raw.githubusercontent.com/dcode-al/database/refs/heads/main/Qoutes/quotespubg.json`)
     var data = await response.json();
     var randomIndex = Math.floor(Math.random() * data.length);
@@ -4567,7 +4625,13 @@ app.get('/api/QuotesPubg', async (req, res) => {
       result: randomResult
     });
 })
-app.get('/api/KataBijak', async (req, res) => {
+app.get('/api/Quotes/Bijak', async (req, res) => {
+const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
     const response = await fetch(`https://raw.githubusercontent.com/dcode-al/database/refs/heads/main/Qoutes/katabijak.json`)
     var data = await response.json();
     var randomIndex = Math.floor(Math.random() * data.length);
@@ -4577,7 +4641,13 @@ app.get('/api/KataBijak', async (req, res) => {
       result: randomResult
     });
 })
-app.get('/api/QuotesGalau', async (req, res) => {
+app.get('/api/Quotes/Galau', async (req, res) => {
+const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
     const response = await fetch(`https://raw.githubusercontent.com/dcode-al/database/refs/heads/main/Qoutes/katagalau.json`)
     var data = await response.json();
     var randomIndex = Math.floor(Math.random() * data.length);
@@ -4587,7 +4657,13 @@ app.get('/api/QuotesGalau', async (req, res) => {
       result: randomResult
     });
 })
-app.get('/api/QuotesHacker', async (req, res) => {
+app.get('/api/Quotes/Hacker', async (req, res) => {
+const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
     const response = await fetch(`https://raw.githubusercontent.com/dcode-al/database/refs/heads/main/Qoutes/katahacker.json`)
     var data = await response.json();
     var randomIndex = Math.floor(Math.random() * data.length);
@@ -4597,7 +4673,13 @@ app.get('/api/QuotesHacker', async (req, res) => {
       result: randomResult
     });
 })
-app.get('/api/KataDilan', async (req, res) => {
+app.get('/api/Quotes/KataDilan', async (req, res) => {
+const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
     const response = await fetch(`https://raw.githubusercontent.com/dcode-al/database/refs/heads/main/Qoutes/quotesdilan.json`)
     var data = await response.json();
     var randomIndex = Math.floor(Math.random() * data.length);
@@ -4607,7 +4689,13 @@ app.get('/api/KataDilan', async (req, res) => {
       result: randomResult
     });
 })
-app.get('/api/QuotesIslami', async (req, res) => {
+app.get('/api/Quotes/Islami', async (req, res) => {
+const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
     const response = await fetch(`https://raw.githubusercontent.com/dcode-al/database/refs/heads/main/Qoutes/quotesislamic.json`)
     var data = await response.json();
     var randomIndex = Math.floor(Math.random() * data.length);
@@ -4619,35 +4707,46 @@ app.get('/api/QuotesIslami', async (req, res) => {
 })
 
 app.get('/api/hentai/blowjob', async (req, res) => {
+try {
+const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
   var response = await fetch(`https://api.waifu.pics/nsfw/blowjob`);
     var data = await response.json();
-    var { url: result } = data;
-    var requestSettings = {
-        url: result,
-        method: 'GET',
-        encoding: null
-    };
-    request(requestSettings, function (error, response, body) {
-        res.set('Content-Type', 'image/png');
-        res.send(body);
-});
+    res.status(200).json({
+      status: 200,
+      creator: "Raiden Store",
+      result: data
+      });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 app.get('/api/hentai/trap', async (req, res) => {
+try {
+const { apikey } = req.query;
+    if (!apikey) {
+    return res.status(400).json({ error: "Isi Parameter Apikey."})
+    }
+    const check = global.apikey
+    if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
   var response = await fetch(`https://api.waifu.pics/nsfw/trap`);
     var data = await response.json();
-    var { url: result } = data;
-    var requestSettings = {
-        url: result,
-        method: 'GET',
-        encoding: null
-    };
-    request(requestSettings, function (error, response, body) {
-        res.set('Content-Type', 'image/png');
-        res.send(body);
-});
+    res.status(200).json({
+      status: 200,
+      creator: "Raiden Store",
+      result: data
+      });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 app.get('/api/hentai/waifu', async (req, res) => {
-    const { apikey } = req.query;
+try {
+const { apikey } = req.query;
     if (!apikey) {
     return res.status(400).json({ error: "Isi Parameter Apikey."})
     }
@@ -4655,16 +4754,14 @@ app.get('/api/hentai/waifu', async (req, res) => {
     if (!check.includes(apikey)) return res.status(400).json({ error: "Apikey Sudah Kedaluwarsa"})
   var response = await fetch(`https://api.waifu.pics/nsfw/waifu`);
     var data = await response.json();
-    var { url: result } = data;
-    var requestSettings = {
-        url: result,
-        method: 'GET',
-        encoding: null
-    };
-    request(requestSettings, function (error, response, body) {
-        res.set('Content-Type', 'image/png');
-        res.send(body);
-});
+    res.status(200).json({
+      status: 200,
+      creator: "Raiden Store",
+      result: data
+      });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 app.get('/api/hentai/neko', async (req, res) => {
 try {
